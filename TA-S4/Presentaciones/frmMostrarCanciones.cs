@@ -11,18 +11,18 @@ using TA_S4.Controllers;
 
 namespace TA_S4.Presentaciones
 {
-    public partial class frmMostrarAlbumes : Form
+    public partial class frmMostrarCanciones: Form
     {
-        public frmMostrarAlbumes()
+        public frmMostrarCanciones()
         {
             InitializeComponent();
         }
 
-        private void frmMostrarAlbumes_Load(object sender, EventArgs e)
+        private void frmMostrarCanciones_Load(object sender, EventArgs e)
         {
-            lboxAlbumes.DisplayMember = "NombreAlbum"; //Mostrar el nombre del album
-            lboxAlbumes.ValueMember = "CodigoAlbum"; //Valor del album
-            lboxAlbumes.DataSource = Controlador.ListaAlbumes; //Lista de albumes
+            lboxCanciones.DisplayMember = "NombreCancion"; // Lo que va a mostrar
+            lboxCanciones.ValueMember = "CodigoCancion"; // Ruta de acceso
+            lboxCanciones.DataSource = Controlador.ListaCanciones; // origen de datos
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

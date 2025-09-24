@@ -30,8 +30,8 @@ namespace TA_S4.Presentaciones
                     //Ingresa si no existe el album (Oliver)
                     Album album = new Album() 
                     { 
-                        codigoAlbum = tbCodigoAlbum.Text,
-                        nombreAlbum = tbNombreAlbum.Text,
+                        CodigoAlbum = tbCodigoAlbum.Text,
+                        NombreAlbum = tbNombreAlbum.Text,
                     };
 
                     //Registrar el album (Oliver)
@@ -49,7 +49,7 @@ namespace TA_S4.Presentaciones
             {
                 MessageBox.Show("Debe completar todos los campos", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
+            // Limpiar los campos
             tbCodigoAlbum.Clear();
             tbNombreAlbum.Clear();
             tbCodigoAlbum.Focus();

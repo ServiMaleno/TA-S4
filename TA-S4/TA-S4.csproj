@@ -61,11 +61,29 @@
     <Compile Include="Presentaciones\frmMostrarAlbumes.Designer.cs">
       <DependentUpon>frmMostrarAlbumes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentaciones\frmMostrarCanciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentaciones\frmMostrarCanciones.Designer.cs">
+      <DependentUpon>frmMostrarCanciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentaciones\frmRegistroAlbum.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentaciones\frmRegistroAlbum.Designer.cs">
       <DependentUpon>frmRegistroAlbum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentaciones\frmRegistroCancion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentaciones\frmRegistroCancion.Designer.cs">
+      <DependentUpon>frmRegistroCancion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentaciones\frmListarCancionesDeUnAlbum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentaciones\frmListarCancionesDeUnAlbum.Designer.cs">
+      <DependentUpon>frmListarCancionesDeUnAlbum.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,8 +93,17 @@
     <EmbeddedResource Include="Presentaciones\frmMostrarAlbumes.resx">
       <DependentUpon>frmMostrarAlbumes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentaciones\frmMostrarCanciones.resx">
+      <DependentUpon>frmMostrarCanciones.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentaciones\frmRegistroAlbum.resx">
       <DependentUpon>frmRegistroAlbum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentaciones\frmRegistroCancion.resx">
+      <DependentUpon>frmRegistroCancion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentaciones\frmListarCancionesDeUnAlbum.resx">
+      <DependentUpon>frmListarCancionesDeUnAlbum.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

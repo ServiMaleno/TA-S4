@@ -8,9 +8,11 @@ namespace TA_S4.Entities
 {
     public class Cancion
     {
-        public Cancion() { }
-        public string codigoCancion { get; set; }
-        public string nombreCancion { get; set; }
-        public float duracion { get; set; }
+        //Constructor
+        public Cancion() { } 
+        // Propiedades de los atributos
+        public string CodigoCancion { get; set; }
+        public string NombreCancion { get; set; }
+        public float Duracion { get; set; }
     }
 }

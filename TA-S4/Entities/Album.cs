@@ -8,11 +8,13 @@ namespace TA_S4.Entities
 {
     public class Album
     {
-        public string codigoAlbum { get; set; }
-        public string nombreAlbum { get; set; }
+        // Propiedades automáticas  de atributos
+        public string CodigoAlbum { get; set; }
+        public string NombreAlbum { get; set; }
 
-        public List<Cancion> canciones { get; set; }
+        public List<Cancion> Canciones { get; set; }
 
-        public Album() { canciones = new List<Cancion>(); }
+        // definimos el constructor y creamos la lista de heroes
+        public Album() { Canciones = new List<Cancion>(); }
     }
 }
