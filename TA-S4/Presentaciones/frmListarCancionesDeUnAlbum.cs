@@ -39,5 +39,10 @@ namespace TA_S4.Presentaciones
         {
             Close();
         }
+
+        private void lboxCanciones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Agregar el codigo
+        }
     }
 }
