@@ -11,6 +11,7 @@ namespace TA_S4.Controllers
     {
         private object txtAlbumCodigo;
         private object txtAlbumNombre;
+        private object albums;
 
         //Definir lista de albumes y lista de canciones (Oliver)
         public static List<Album> ListaAlbumes { get; set; }
@@ -47,6 +48,11 @@ namespace TA_S4.Controllers
 
         private void btnAgregarAlbum_Click(object sender, EventArgs e)
         {
+            btnAgregarAlbum_Click(sender, e, albums);
+        }
+
+        private void btnAgregarAlbum_Click(object sender, EventArgs e, object albums)
+        {
             string codigo = txtAlbumCodigo.Text.Trim();
             string nombre = txtAlbumNombre.Text.Trim();
 
@@ -63,10 +69,10 @@ namespace TA_S4.Controllers
             }
 
             Album aNuevo = new Album(codigo, nombre);
-            albums.Add(aNuevo);
+            object nuevoAlbum = albums.Add(aNuevo);
             ActualizarListaAlbums();
             MessageBox.Show("Álbum agregado correctamente.");
-            txtAlbumCodigo.Clear();
+            object value = txtAlbumCodigo.Clear();
             txtAlbumNombre.Clear();
         }
 
