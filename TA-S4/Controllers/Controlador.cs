@@ -40,7 +40,7 @@ namespace TA_S4.Controllers
                 return value.CodigoCancion == codigoCancion;
             });
         }
-        //Registrar una canción en un album (Darwin)
+       
         public void RegistrarCancionEnAlbum(String codigoAlbum, Cancion cancion)
         {
             Album albumEncontrado = ListaAlbumes.Find(delegate (Album value)
@@ -68,7 +68,7 @@ namespace TA_S4.Controllers
         {
             Album albumEncontrado = ListaAlbumes.Find(delegate (Album value)
             {
-                return value.CodigoAlbum == codigoAlbum;
+                return value.Codigo == codigoAlbum;
             });
             if (albumEncontrado != null) return albumEncontrado.Canciones;
             else return null;
