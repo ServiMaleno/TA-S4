@@ -12,8 +12,9 @@ namespace TA_S4.Entities
             public string Codigo { get; set; }
             public string Nombre { get; set; }
             public List<Cancion> Canciones { get; private set; }
+        public string CodigoAlbum { get; internal set; }
 
-            public Album(string codigo, string nombre)
+        public Album(string codigo, string nombre)
             {
                 Codigo = codigo;
                 Nombre = nombre;

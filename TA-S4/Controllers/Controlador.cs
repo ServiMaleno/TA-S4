@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using TA_S4.Entities;
 namespace TA_S4.Controllers
 {
     public class Controlador
     {
+        private object txtAlbumCodigo;
+        private object txtAlbumNombre;
+
         //Definir lista de albumes y lista de canciones (Oliver)
         public static List<Album> ListaAlbumes { get; set; }
         public static List<Cancion> ListaCanciones { get; set; }
@@ -40,26 +44,135 @@ namespace TA_S4.Controllers
                 return value.CodigoCancion == codigoCancion;
             });
         }
-       
-        public void RegistrarCancionEnAlbum(String codigoAlbum, Cancion cancion)
-        {
-            Album albumEncontrado = ListaAlbumes.Find(delegate (Album value)
-            {
-                return value.CodigoAlbum == codigoAlbum;
-            });
 
-            if (albumEncontrado != null)
+        private void btnAgregarAlbum_Click(object sender, EventArgs e)
+        {
+            string codigo = txtAlbumCodigo.Text.Trim();
+            string nombre = txtAlbumNombre.Text.Trim();
+
+            if (string.IsNullOrEmpty(codigo) || string.IsNullOrEmpty(nombre))
             {
-                albumEncontrado.Canciones.Add(cancion);
+                MessageBox.Show("Ingrese código y nombre del álbum.");
+                return;
             }
-            if (ListaCanciones.Exists(delegate (Cancion value)
+
+            if (albums.Any(a => a.Codigo == codigo))
             {
-                return value.CodigoCancion == cancion.CodigoCancion;
-                // SI existe el codigo de cancion se retorna la cancion, pero al negar seria Falso, entonces sale del IF sin hacer nada
-                // Si no existe el codigo de cancion retorna falso, pero con la negacion seria VERDADERO, entonces ingresa al IF
-            }))
+                MessageBox.Show("Ya existe un álbum con ese código.");
+                return;
+            }
+
+            Album aNuevo = new Album(codigo, nombre);
+            albums.Add(aNuevo);
+            ActualizarListaAlbums();
+            MessageBox.Show("Álbum agregado correctamente.");
+            txtAlbumCodigo.Clear();
+            txtAlbumNombre.Clear();
+        }
+
+        private void btnMostrarAlbums_Click(object sender, EventArgs e)
+        {
+            lbAlbums.Items.Clear();
+            foreach (var a in albums)
             {
-                ListaCanciones.Add(cancion);
+                lbAlbums.Items.Add(a.ToString());
+            }
+        }
+
+        private void btnAgregarCancion_Click(object sender, EventArgs e)
+        {
+            if (cmbAlbumSeleccionado.Items.Count == 0)
+            {
+                MessageBox.Show("No hay álbumes para seleccionar. Primero registre un álbum.");
+                return;
+            }
+
+            string albumSeleccionado = cmbAlbumSeleccionado.SelectedItem as string;
+            if (string.IsNullOrEmpty(albumSeleccionado))
+            {
+                MessageBox.Show("Seleccione un álbum.");
+                return;
+            }
+
+            string codigoCancion = txtCancionCodigo.Text.Trim();
+            string nombreCancion = txtCancionNombre.Text.Trim();
+            string duracionTxt = txtCancionDuracion.Text.Trim();
+
+            if (string.IsNullOrEmpty(codigoCancion) || string.IsNullOrEmpty(nombreCancion) || string.IsNullOrEmpty(duracionTxt))
+            {
+                MessageBox.Show("Complete los datos de la canción.");
+                return;
+            }
+
+            if (!double.TryParse(duracionTxt, out double duracion))
+            {
+                MessageBox.Show("Duración inválida. Ingrese número (minutos). Ej: 3.5");
+                return;
+            }
+
+            // obtener album por codigo (en cmb almacenamos "codigo - nombre")
+            string codigoAlbum = albumSeleccionado.Split('-')[0].Trim();
+            Album album = albums.FirstOrDefault(a => a.Codigo == codigoAlbum);
+            if (album == null)
+            {
+                MessageBox.Show("Álbum no encontrado.");
+                return;
+            }
+
+            Cancion c = new Cancion(codigoCancion, nombreCancion, duracion);
+            bool agregado = album.AgregarCancion(c);
+            if (!agregado)
+            {
+                MessageBox.Show("La canción ya existe en este álbum (mismo código).");
+                return;
+            }
+
+            MessageBox.Show("Canción agregada al álbum.");
+            txtCancionCodigo.Clear();
+            txtCancionNombre.Clear();
+            txtCancionDuracion.Clear();
+            ActualizarListaAlbums();
+            ActualizarTodasLasCancionesListBox();
+        }
+
+        private void btnMostrarTodasCanciones_Click(object sender, EventArgs e)
+        {
+            lbCanciones.Items.Clear();
+            var todas = ObtenerTodasLasCanciones();
+            foreach (var c in todas)
+            {
+                lbCanciones.Items.Add(c.ToString());
+            }
+        }
+
+        private void btnListarCancionesAlbum_Click(object sender, EventArgs e)
+        {
+            if (lbAlbums.SelectedItem == null)
+            {
+                MessageBox.Show("Seleccione un álbum de la lista de álbumes.");
+                return;
+            }
+
+            // Formato en lbAlbums: "codigo - nombre (n canciones)"
+            string seleccionado = lbAlbums.SelectedItem.ToString();
+            string codigo = seleccionado.Split('-')[0].Trim();
+            Album album = albums.FirstOrDefault(a => a.Codigo == codigo);
+            if (album == null)
+            {
+                MessageBox.Show("Álbum no encontrado.");
+                return;
+            }
+
+            if (album.Canciones.Count == 0)
+            {
+                MessageBox.Show("El álbum no tiene canciones registradas.");
+                return;
+            }
+
+            lbCanciones.Items.Clear();
+            foreach (var c in album.Canciones)
+            {
+                lbCanciones.Items.Add(c.ToString());
             }
         }
 

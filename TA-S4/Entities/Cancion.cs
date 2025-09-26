@@ -14,8 +14,9 @@ namespace TA_S4.Entities
 
             // Duración en minutos (double) o en segundos según preferencia; aquí usamos minutos.
             public double DuracionMinutos { get; set; }
+        public string CodigoCancion { get; internal set; }
 
-            public Cancion(string codigo, string nombre, double duracionMinutos)
+        public Cancion(string codigo, string nombre, double duracionMinutos)
             {
                 Codigo = codigo;
                 Nombre = nombre;
