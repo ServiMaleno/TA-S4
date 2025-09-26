@@ -203,7 +203,36 @@ namespace TA_S4.Controllers
             }
             return temp;
         }
+        //Obtener cancion con mayor duracion (Franco)
+        public Cancion CancionConMayorDuracion()
+        {
+            Cancion temp = new Cancion();
+            temp.DuracionMinutos = -1;
+            foreach (Album album in ListaAlbumes)
+            {
+                foreach (Cancion cancion in album.Canciones)
+                {
+                    if (cancion.DuracionMinutos > temp.DuracionMinutos) temp = cancion;
+                }
+            }
+            return temp;
+        }
+
+        //Obtener cancion con menor duracion (Franco)
+        public Cancion CancionConMenorDuracion()
+        {
+            Cancion temp = new Cancion();
+            temp.DuracionMinutos = 101;
+            foreach (Album album in ListaAlbumes)
+            {
+                foreach (Cancion cancion in album.Canciones)
+                {
+                    if (cancion.DuracionMinutos < temp.DuracionMinutos) temp = cancion;
+                }
+            }
+            return temp;
+        }
 
 
-    }    
+    }
 }

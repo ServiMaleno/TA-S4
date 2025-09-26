@@ -42,7 +42,15 @@ namespace TA_S4
         {
             Controlador objcontrolador = new Controlador();
             Album album = objcontrolador.AlbumConMasCanciones();
-            MessageBox.Show("El álbum con más canciones es: " + album.NombreAlbum);
+            MessageBox.Show("El álbum con más canciones es: " + album.Nombre);
+        }
+
+        private void obtenerElNombreDeLaCanciónConMayorYMenorDuraciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Controlador objcontrolador = new Controlador();
+            Cancion cancionMayor = objcontrolador.CancionConMayorDuracion();
+            Cancion cancionMenor = objcontrolador.CancionConMenorDuracion();
+            MessageBox.Show("El nombre de la canción con más duración es " + cancionMayor.Nombre + "y el código de menor poder es " + cancionMenor.Nombre);
         }
     }
 }
