@@ -3,18 +3,70 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TA_S4.Entities;
 
 namespace TA_S4.Entities
 {
+        public class Album
+        {
+            public string Codigo { get; set; }
+            public string Nombre { get; set; }
+            public List<Cancion> Canciones { get; private set; }
+
+            public Album(string codigo, string nombre)
+            {
+                Codigo = codigo;
+                Nombre = nombre;
+                Canciones = new List<Cancion>();
+            }
+
+            public bool AgregarCancion(Cancion c)
+            {
+                // No permitir canciones repetidas dentro del mismo álbum (por código)
+                if (Canciones.Any(x => x.Codigo == c.Codigo)) return false;
+                Canciones.Add(c);
+                return true;
+            }
+
+            public override string ToString()
+            {
+                return $"{Codigo} - {Nombre} ({Canciones.Count} canciones)";
+            }
+        }
+    }
+
+
+
+}
+
+
+namespace DiscoApp
+{
     public class Album
     {
-        // Propiedades automáticas  de atributos
-        public string CodigoAlbum { get; set; }
-        public string NombreAlbum { get; set; }
+        public string Codigo { get; set; }
+        public string Nombre { get; set; }
+        public List<Cancion> Canciones { get; private set; }
 
-        public List<Cancion> Canciones { get; set; }
+        public Album(string codigo, string nombre)
+        {
+            Codigo = codigo;
+            Nombre = nombre;
+            Canciones = new List<Cancion>();
+        }
 
-        // definimos el constructor y creamos la lista de heroes
-        public Album() { Canciones = new List<Cancion>(); }
+        public bool AgregarCancion(Cancion c)
+        {
+            // No permitir canciones repetidas dentro del mismo álbum (por código)
+            if (Canciones.Any(x => x.Codigo == c.Codigo)) return false;
+            Canciones.Add(c);
+            return true;
+        }
+
+        public override string ToString()
+        {
+            return $"{Codigo} - {Nombre} ({Canciones.Count} canciones)";
+        }
     }
 }
+
